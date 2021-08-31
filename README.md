@@ -18,3 +18,7 @@ Then run `watch "curl -s http://192.168.60.10"`
 Open another terminal, type `vagrant ssh master -c "sudo systemctl stop keepalived"`
 
 Then see the result of first terminal.
+
+## Reference
+
+* [使用 Haproxy + Keepalived 构建基于 Docker 的高可用负载均衡服务（一） - CODING 博客](https://blog.coding.net/blog/Haproxy&Keepalived)
