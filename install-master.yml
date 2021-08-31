@@ -1,0 +1,28 @@
+---
+- name: Install master
+  hosts: master
+  become: yes
+
+  tasks:
+    - include_tasks: install-keepalived.yml
+
+    - include_tasks: install-haproxy.yml
+
+    - name: Stop service
+      service:
+        name: keepalived
+        state: stopped
+
+    - name: Install master config
+      copy:
+        backup: yes
+        src: files/keepalived-master.conf
+        dest: /etc/keepalived/keepalived.conf
+        force: yes
+
+    - name: Enable service and start
+      service:
+        name: keepalived
+        state: started
+        enabled: yes
+

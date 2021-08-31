@@ -1,0 +1,47 @@
+---
+- name: Install haproxy
+  yum:
+    name:
+      - haproxy
+      - python3-libselinux
+      - python3-policycoreutils
+    state: present
+
+- name: Stop service
+  service:
+    name: haproxy
+    state: stopped
+
+- name: Install configuration
+  copy:
+    src: files/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    backup: yes
+
+- name: Allow Apache to listen on tcp port 10080
+  seport:
+    ports: 10080
+    proto: tcp
+    setype: http_port_t
+    state: present
+
+- name: permit traffic in default zone for http service
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+
+- name: permit traffic in default zone for http service
+  firewalld:
+    port: 10080/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+
+- name: Enable and start service
+  service:
+    name: haproxy
+    state: started
+    enabled: yes
+
