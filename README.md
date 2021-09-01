@@ -22,3 +22,5 @@ Then see the result of first terminal.
 ## Reference
 
 * [使用 Haproxy + Keepalived 构建基于 Docker 的高可用负载均衡服务（一） - CODING 博客](https://blog.coding.net/blog/Haproxy&Keepalived)
+* https://access.redhat.com/documentation/zh-tw/red_hat_enterprise_linux/7/html/load_balancer_administration/ch-lvs-overview-vsa
+
